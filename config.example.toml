@@ -1,0 +1,37 @@
+language = "zh"
+
+[log]
+level = "info"
+
+[display]
+mode = "quiet"
+thinking_messages = false
+tool_messages = false
+reply_footer = false
+show_context_indicator = false
+
+# 微信个人号容易因连续发送过快被限制，保守控制发送速度。
+
+[outgoing_rate_limit.platforms.weixin]
+max_per_second = 0.5
+burst = 1
+
+[[projects]]
+name = "claude-wechat"
+
+[projects.agent]
+type = "claudecode"
+
+[projects.agent.options]
+work_dir = "/absolute/path/to/your/project"
+mode = "default"
+reasoning_effort = "high"
+cmd = "/absolute/path/to/claude-wechat-cc-connect/claude-status.py"
+
+[[projects.platforms]]
+type = "weixin"
+
+[projects.platforms.options]
+# 运行下面的命令扫码后，cc-connect 会自动写入 token 和账号信息：
+# cc-connect weixin setup --project claude-wechat
+# 绑定完成后务必确认 allow_from 只包含你自己的微信 ID。

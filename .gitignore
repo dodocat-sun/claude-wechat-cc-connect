@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+config.toml
+.env
+logs/
+sessions/
+status/
+*.token
+*.secret
